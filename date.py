@@ -13,22 +13,3 @@ def day_of_year(day, month, year):
     day_of_year = sum(day_in_month[:month - 1]) + day
     return day_of_year
 
-def day_in_year(year):
-    return 366 if is_leap(year) else 365
-
-def date_diff(date1, date2):
-    d1, m1, y1 = map(int, date1.split("-"))
-    d2, m2, y2 = map(int, date2.split("-"))
-
-    if y1 == y2:
-        return day_of_year(d2, m2, y2) - day_of_year(d1, m1, y1) + 1
-    day = day_in_year(y1) - day_in_year(d1, m1, y1) + 1
-
-    for year in range(y1 + 1, y2):
-        day += day_in_year
-
-    day += day_of_year(d2, m2, y2)
-
-    return days
-
-print(date_diff("25-12-2024", "9-3-2000"))
